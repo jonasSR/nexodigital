@@ -1,0 +1,716 @@
+/* --- Variáveis e Configurações Globais --- */
+:root {
+    --bg-deep: #0d1117;
+    --bg-accent: #161b22;
+    --primary: #3498db;
+    --primary-glow: rgba(52, 152, 219, 0.4);
+    --text-main: #f0f6fc;
+    --text-dim: #8b949e;
+    --gold-accent: #c6a052;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- Navegação Flutuante --- */
+nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(13, 17, 23, 0.75); /* Fundo semi-transparente */
+    backdrop-filter: blur(12px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.nav-logo {
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: var(--text-main);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Esconde o menu mobile por padrão no desktop */
+.mobile-sub-menu {
+    display: none;
+}
+
+/* --- AJUSTE PARA DISPOSITIVOS MÓVEIS --- */
+@media (max-width: 768px) {
+    /* Esconde os links de dentro da barra pílula */
+    .desktop-menu {
+        display: none;
+    }
+
+    /* Estiliza a barra pílula para ficar mais compacta no mobile */
+    nav {
+        width: 95%;
+        padding: 8px 20px;
+    }
+
+    /* Cria a linha de links fora da barra */
+    .mobile-sub-menu {
+        display: flex;
+        justify-content: center;
+        position: fixed; /* Fixa no topo também */
+        top: 90px; /* Posiciona logo abaixo da nav principal */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        z-index: 999;
+    }
+
+    .mobile-sub-menu a {
+        text-decoration: none;
+        color: var(--text-dim);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: rgba(13, 17, 23, 0.4);
+        padding: 5px 6px;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+    }
+
+    /* Ajuste no Header para a frase "The Future" não bater nos links */
+    header {
+        padding-top: 150px !important;
+    }
+    
+    .logo-area {
+        margin-top: 20px;
+    }
+}
+
+/* Esconder links em telas pequenas para não quebrar o layout */
+@media (max-width: 850px) {
+    .nav-links {
+        display: none;
+    }
+    nav {
+        width: 95%;
+        padding: 10px 20px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(198, 160, 82, 0.05) 0%, transparent 50%);
+}
+
+/* --- Tipografia --- */
+.logo-text {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.tagline {
+    font-size: 0.9rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--gold-accent);
+    margin-bottom: 20px;
+}
+
+/* --- Layout e Seções --- */
+header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.glass-card {
+    background: rgba(22, 27, 34, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 32px;
+    padding: 40px;
+}
+
+/* --- Grid de Serviços --- */
+.grid-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.service-item {
+    background: var(--bg-accent);
+    border: 1px solid var(--glass-border);
+    padding: 40px 30px;
+    border-radius: 24px;
+    transition: var(--transition);
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--primary-glow);
+}
+
+.service-item i {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--primary), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Botões --- */
+.cta-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--primary-glow);
+}
+
+/* --- FOOTER SLIM (Otimizado) --- */
+.main-footer {
+    padding: 60px 20px 30px;
+    text-align: center;
+    background: linear-gradient(to top, rgba(52, 152, 219, 0.02), transparent);
+}
+
+.footer-divider {
+    height: 1px;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    background: linear-gradient(to right, transparent, var(--primary), transparent);
+    opacity: 0.3;
+}
+
+.logo-text-small {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.footer-slogan {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 8px 0 15px;
+    font-style: italic;
+}
+
+.footer-contact-info {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.footer-contact-info i {
+    color: var(--primary);
+    margin-right: 4px;
+}
+
+.footer-socials a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.footer-socials a:hover {
+    transform: scale(1.2);
+    color: var(--primary);
+}
+
+.footer-info {
+    margin-top: 20px;
+}
+
+.premium-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid var(--gold-accent);
+    color: var(--gold-accent);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    opacity: 0.6;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .footer-contact-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .logo-text { font-size: 2.8rem; }
+    section { padding: 60px 5%; }
+}
+
+/* --- Estilos da Seção de Pilares --- */
+.grid-pilares {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.pilar-item {
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.pilar-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    border: 1px solid var(--primary-glow);
+    color: var(--primary);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.pilar-item:hover .pilar-icon {
+    background: var(--primary);
+    color: white;
+    transform: rotateY(180deg); /* Efeito de giro premium */
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.pilar-item h4 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.pilar-item p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+/* Ajuste de responsividade para o divisor da seção autoridade que vem logo abaixo */
+#autoridade {
+    margin-top: -40px; /* Aproxima as seções para um fluxo melhor */
+}
+/* Adicione isso para dar um acabamento superior aos inputs e botões */
+input, textarea {
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    transition: 0.3s;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    background: rgba(52, 152, 219, 0.05);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* Melhoria no botão de envio para parecer uma ferramenta, não um clique comum */
+.cta-button-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--primary), #2980b9);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.cta-button-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--primary-glow);
+    filter: brightness(1.2);
+}
+.nav-logo img {
+    max-height: 50px; /* Limita o tamanho máximo */
+    object-fit: contain; /* Garante que a logo não seja distorcida */
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 60px; /* Garante espaço para os menus que ficam em cima */
+    }
+    
+    .logo-text {
+        font-size: 2.5rem; /* Ajuste para não ficar gigante no celular */
+    }
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    padding: 0 !important; /* Remove o padding padrão do glass-card para a imagem encostar nas bordas */
+    overflow: hidden;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 17, 23, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.1);
+}
+
+.portfolio-info {
+    padding: 25px;
+}
+
+.portfolio-info .category {
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.portfolio-info h3 {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.portfolio-info p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+/* Customização dos pontinhos de paginação para o seu azul */
+.swiper-pagination-bullet {
+    background: var(--primary) !important;
+    opacity: 0.3;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Container principal com margem para as setas não baterem na borda da tela */
+.mySwiper {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Posicionamento das setas nas extremidades */
+.swiper-button-next {
+    right: 0px !important;
+    color: var(--primary) !important;
+}
+
+.swiper-button-prev {
+    left: 0px !important;
+    color: var(--primary) !important;
+}
+
+/* Tamanho e peso das setas */
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 1.8rem !important;
+    font-weight: 900;
+}
+
+/* Estilo dos pontinhos embaixo */
+.swiper-pagination-bullet {
+    background: var(--primary) !important;
+    bottom: 10px !important;
+}
+
+/* Responsividade: em celulares, melhor deixar só o touch e esconder as setas */
+@media (max-width: 768px) {
+    .swiper-button-next, .swiper-button-prev {
+        display: none;
+    }
+    .mySwiper {
+        padding: 20px 10px 50px 10px !important;
+    }
+}
+
+/* No seu CSS geral, adicione/ajuste isto para controle fino */
+#portfolio {
+    padding: 80px 5%; /* Padding padrão para Desktop */
+}
+
+#portfolio h2 {
+    margin-bottom: 30px; /* Espaço entre título e slider no Desktop */
+}
+
+/* --- AJUSTES PARA CELULAR --- */
+@media (max-width: 768px) {
+    #portfolio {
+        padding: 40px 5% !important; /* Reduz o respiro do topo da seção */
+    }
+
+    #portfolio div[style*="margin-bottom: 50px"] {
+        margin-bottom: 20px !important; /* Aproxima o conjunto de títulos do slider */
+    }
+
+    #portfolio h2 {
+        margin-bottom: 10px !important; /* Aproxima especificamente a frase do card */
+    }
+
+    .mySwiper {
+        padding-top: 0 !important; /* Remove o padding interno superior do slider */
+        padding-bottom: 40px !important;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        display: none;
+    }
+}
+
+/* Container de estatísticas */
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px 20px;
+    flex: 1;
+    min-width: 150px;
+    border-right: 1px solid var(--glass-border);
+}
+
+.stat-item:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.stat-desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* --- AJUSTE PARA CELULAR (REDUZIR CRESCIMENTO VERTICAL) --- */
+@media (max-width: 768px) {
+    .section-autoridade-container {
+        padding: 20px 10px !important;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Divide em 2 colunas para economizar altura */
+        gap: 15px;
+    }
+
+    .stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 15px 5px;
+        min-width: unset;
+    }
+
+    /* Faz o último item (Zero Brechas) ocupar as duas colunas para fechar o desenho */
+    .stat-item:last-child {
+        grid-column: span 2;
+        border-bottom: none;
+    }
+
+    .stat-number {
+        font-size: 1.8rem; /* Diminui a fonte no mobile */
+    }
+
+    .stat-desc {
+        font-size: 0.8rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    #pilares {
+        padding: 20px 5% !important;
+    }
+
+    #pilares h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 20px !important;
+    }
+
+    .grid-pilares {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .pilar-item {
+        display: flex !important;
+        flex-direction: row !important; /* Ícone ao lado do texto */
+        align-items: center !important;
+        text-align: left !important;
+        padding: 12px !important;
+        gap: 15px !important;
+        background: rgba(255, 255, 255, 0.03); /* Leve destaque de fundo */
+        border-radius: 12px;
+    }
+
+    /* Remove a regra de span 2 que estava quebrando o layout */
+    .pilar-item:last-child {
+        grid-column: auto !important;
+    }
+
+    .pilar-icon {
+        width: 45px !important;
+        height: 45px !important;
+        min-width: 45px !important; /* Garante que o ícone não amasse */
+        font-size: 1rem !important;
+        margin-bottom: 0 !important; /* Remove margem inferior para alinhar no centro */
+    }
+
+    .pilar-text h4 {
+        font-size: 1rem !important;
+        margin-bottom: 2px !important;
+        color: var(--primary);
+    }
+
+    .pilar-text p {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
+    }
+}
